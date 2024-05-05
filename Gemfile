@@ -52,6 +52,8 @@ gem "devise-bootstrap5"
 
 gem 'faker'
 
+gem 'will_paginate', '~> 4.0'
+
 gem "chartkick"
 
 group :development, :test do
@@ -78,3 +80,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "rails_performance", "~> 1.2"
