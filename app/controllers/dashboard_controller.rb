@@ -2,31 +2,34 @@ class DashboardController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @active_people_pie_chart = {
-      active: Person.where(active: true).count,
-      inactive: Person.where(active: false).count
-    }
+    @dashboard = Dashboard.new(current_user);
 
-    active_people_ids = Person.where(active: true).select(:id)
+    # @active_people_pie_chart = {
+    #   active: Person.where(active: true).count,
+    #   inactive: Person.where(active: false).count
+    # }
 
-    @total_debts = Debt.where(person_id: active_people_ids).sum(:amount)
+    #active_people_ids = Person.where(active: true).select(:id)
 
-    @total_payments = Payment.where(person_id: active_people_ids).sum(:amount)
+    #@total_debts = Debt.where(person_id: active_people_ids).sum(:amount)
 
-    @balance = @total_payments - @total_debts
+    #@total_payments = Payment.where(person_id: active_people_ids).sum(:amount)
 
-    @last_debts = Debt.order(created_at: :desc).limit(10).map do |debt|
-      [debt.id, debt.amount]
-    end
+    #@balance = @total_payments - @total_debts
 
-    @last_payments = Payment.order(created_at: :desc).limit(10).map do |payment|
-      [payment.id, payment.amount]
-    end
+    # @last_debts = Debt.order(created_at: :desc).limit(10).map do |debt|
+    #   [debt.id, debt.amount]
+    # end
 
-    @my_people = Person.where(user: current_user).order(:created_at).limit(10)
+    # @last_payments = Payment.order(created_at: :desc).limit(10).map do |payment|
+    #   [payment.id, payment.amount]
+    # end
 
-    @top_person = Person.order(:balance).last
+    #@my_people = Person.where(user: current_user).order(:created_at).limit(10)
 
-    @bottom_person = Person.order(:balance).first
+    #@top_person = Person.order(:balance).last
+
+    #@bottom_person = Person.order(:balance).first
+
   end
 end

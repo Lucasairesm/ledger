@@ -5,7 +5,7 @@ class DebtsController < ApplicationController
   def index
     #@debts = Debt.all
     #@debts = Debt.paginate(page: params[:page],per_page: 100)
-    @debts = Debt.paginate.includes(:person).(page: params[:page],per_page: 100)
+    @debts = Debt.includes(:person).paginate(page: params[:page],per_page: 100)
   end
 
   # GET /debts/new

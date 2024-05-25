@@ -82,3 +82,7 @@ group :test do
 end
 
 gem "rails_performance", "~> 1.2"
+
+gem "letter_opener_web", "~> 3.0"
+
+gem "sidekiq", "~> 7.2"
